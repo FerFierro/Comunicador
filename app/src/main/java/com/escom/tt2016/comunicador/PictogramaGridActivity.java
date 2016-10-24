@@ -44,7 +44,7 @@ public class PictogramaGridActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(PictogramaContent.ITEMS));
+        recyclerView.setAdapter(new PictogramaAdapter(PictogramaContent.ITEMS));
         recyclerView.setLayoutManager(new GridLayoutManager(this,5));
         //recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -54,12 +54,12 @@ public class PictogramaGridActivity extends AppCompatActivity {
     }
 
 
-    public class SimpleItemRecyclerViewAdapter
-            extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
+    public class PictogramaAdapter
+            extends RecyclerView.Adapter<PictogramaAdapter.PictogramaViewHolder> {
 
         private final List<Pictograma> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Pictograma> items) {
+        public PictogramaAdapter(List<Pictograma> items) {
             mValues = items;
         }
 
@@ -68,10 +68,10 @@ public class PictogramaGridActivity extends AppCompatActivity {
  /*onCreateViewHolder(). Encargado de crear los nuevos objetos ViewHolder necesarios para los elementos de la colección.*/
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public PictogramaViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_pictograma_categoria_content, parent, false);
-            return new ViewHolder(view);
+            return new PictogramaViewHolder(view);
         }
 
 
@@ -80,7 +80,7 @@ public class PictogramaGridActivity extends AppCompatActivity {
 /*onBindViewHolder(). Encargado de actualizar los datos de un RecyclerView.ViewHolder ya existente.*/
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final PictogramaViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
             // holder.mIdView.setText(mValues.get(position).id);
             holder.mNombreView.setText(mValues.get(position).nombre);
@@ -96,7 +96,7 @@ public class PictogramaGridActivity extends AppCompatActivity {
             return mValues.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
+        public class PictogramaViewHolder extends RecyclerView.ViewHolder {
             //campos respectivos de un item Pictograma
             public final View mView;
             // public final TextView mIdView;
@@ -105,7 +105,7 @@ public class PictogramaGridActivity extends AppCompatActivity {
 
             public Pictograma mItem;
 
-            public ViewHolder(View view) {
+            public PictogramaViewHolder(View view) {
                 super(view);
                 mView = view;
                 // mIdView = (TextView) view.findViewById(R.id.txt_id);
